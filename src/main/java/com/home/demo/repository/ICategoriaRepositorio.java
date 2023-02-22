@@ -7,4 +7,6 @@ import com.home.demo.entity.Categoria;
 
 @Repository
 public interface ICategoriaRepositorio extends JpaRepository<Categoria, Integer>{
+	public Categoria findByNombre(final String nombre);
+	public Categoria deleteByNombre(final String nombre);
 }

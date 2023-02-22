@@ -1,5 +1,7 @@
 package com.home.demo.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -10,11 +12,13 @@ import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.extern.slf4j.Slf4j;
 
 @Entity
 @Table(name = "producto_detalles")
 @Getter
 @Setter
+@Slf4j
 public class ProductoDetalle {
 	public ProductoDetalle() {
 		super();
@@ -26,7 +30,7 @@ public class ProductoDetalle {
 		this.valor = valor;
 		this.producto = producto;
 	}
-	
+
 	public ProductoDetalle(String nombre, String valor, Producto producto) {
 		super();
 		this.nombre = nombre;
@@ -44,6 +48,7 @@ public class ProductoDetalle {
 	@Column(length = 45, nullable = false)
 	private String valor;
 
+	@JsonIgnoreProperties("detalles")
 	@ManyToOne
 	@JoinColumn(name = "producto_id")
 	private Producto producto;

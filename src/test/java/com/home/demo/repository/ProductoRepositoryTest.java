@@ -18,7 +18,7 @@ import com.home.demo.entity.Producto;
 public class ProductoRepositoryTest {
 	@Autowired
 	IProductoRepositorio repoProducto;
-	
+
 	@Test
 	public void createProducto() {
 		Producto producto = repoProducto.save(new Producto("Shampoo", 12.8f));

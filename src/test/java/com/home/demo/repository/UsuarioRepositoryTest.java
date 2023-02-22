@@ -21,30 +21,30 @@ import com.home.demo.entity.Usuario;
 public class UsuarioRepositoryTest {
 	@Autowired
 	IUsuarioRepositorio repoUsuario;
-	
+
 	@Autowired
 	IRolRepositorio repoRol;
-	
+
 	@Autowired
 	TestEntityManager entityManager;
-	
+
 	@Test
 	void createUsuario() {
 		Usuario user = repoUsuario.save(new Usuario("test@test.com", "test"));
 		assertEquals(user.getEmail(), "test@test.com");
 	}
-	
+
 	@Test
 	void crearRoles() {
 		Rol rolAdmin = new Rol("Administrador");
 		Rol rolEditor = new Rol("Editor");
 		Rol rolAnonimo = new Rol("Anonimo");
-		
+
 		assertEquals(repoRol.save(rolAdmin).getNombre(), "Administrador");
 		assertEquals(repoRol.save(rolEditor).getNombre(), "Editor");
 		assertEquals(repoRol.save(rolAnonimo).getNombre(), "Anonimo");
 	}
-	
+
 	@Test
 	void crearUsuarioConRol() {
 		Rol rolAdmin = new Rol("Administrador");
@@ -52,7 +52,7 @@ public class UsuarioRepositoryTest {
 		Usuario user = new Usuario("test@test.com", "test");
 		user.anhadirRol(rolAdmin);
 		user.anhadirRol(rolEditor);
-		
+
 		assertThat(repoUsuario.save(user).getRoles().toString().contains("Administrador"));
 	}
 }

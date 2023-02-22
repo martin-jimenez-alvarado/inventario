@@ -1,6 +1,7 @@
 package com.home.demo.service;
 
 import java.util.List;
+
 import com.home.demo.entity.Categoria;
 
 public interface ICategoriaService {
